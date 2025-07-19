@@ -33,20 +33,20 @@ function getHumanChoice(){
 
 function result(humanChoice, computerChoice){
     if(humanChoice==computerChoice)
-        return "TIE";
+        return "tie";
     else if(humanChoice=="rock"){
         switch(computerChoice){
             case "paper":
                 return "lose";
                 break;
             case "scissor":
-                return "wins";
+                return "win";
         }//end of switch
     }
     else if(humanChoice=="paper"){
         switch(computerChoice){
             case "rock":
-                return "WIN";
+                return "win";
                 break;
             case "scissor":
                 return "lose";
@@ -57,10 +57,10 @@ function result(humanChoice, computerChoice){
 
         switch(computerChoice){
             case "paper":
-                return "WIN";
+                return "win";
                 break;
             case "rock":
-                return "LOSE";
+                return "lose";
                 break;
         }//end of switch
     }
@@ -77,7 +77,55 @@ function playRound(){
     console.log("Result: "+state);
 }
 
-for(let i=0;i<5;i++){
-    console.log(`round NO: ${i+1} \n`);
-    playRound();
-}
+//clicking a button
+const choice=document.querySelectorAll("button");
+//score stroing variables and other
+let hScore=0;
+let cScore=0;
+let cScoreText=document.querySelector("#computerScore");
+let hScoreText=document.querySelector("#humanScore");
+let matchResult=document.querySelector("#result");
+choice.forEach((button)=>{
+
+        button.addEventListener("click",(e)=>{
+            let humanChoice=button.value;
+            // console.log(e.target);
+            let computerChoice=getComputerChoice();
+            // console.log("computer chose: "+computerChoice);
+            document.querySelector("#computerChoice").textContent=computerChoice;
+            // console.log("\n"+" you chose: "+humanChoice);
+            document.querySelector("#humanChoice").textContent=button.value;
+            let state=result(humanChoice,computerChoice);
+            // console.log("\n");
+            // console.log("Result: "+state);
+            document.querySelector("#matchResult").textContent=state;
+            
+            
+            if(hScore<5 && cScore<5){
+                if(state==="win"){
+                    hScore++;
+                    // hScoreText.textContent=hScore;
+                }
+                else if(state=="lose"){
+                    cScore++;
+                    // cScoreText.textContent=cScore;
+                }
+                cScoreText.textContent=cScore;
+                hScoreText.textContent=hScore;
+            }
+
+            if(hScore==5||cScore==5){
+                if(hScore>cScore)
+                    matchResult.textContent="You win";
+                else if(hScore<cScore)
+                    matchResult.textContent="You lose";
+                else
+                    matchResult.textContent="its a Tie!";
+                    
+            }
+
+    });
+
+});
+
+

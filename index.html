@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="source.js" defer></script>
 </head>
 <body>
     
-    <script src="source.js"></script>
+
+    <h1>Choose your move!</h1>
+
+    <div id="buttons">
+    <button id="rock" value="rock">rock</button>
+    <button id="paper" value="paper">paper</button>
+    <button id="scissor" value="scissor">scissor</button>
+    </div>
+    <label>computer chose: </label>
+    <span id="computerChoice"></span>
+    <br>
+    <label>you chose: </label>
+    <span id="humanChoice"></span>
+    <br>
+    <label>match result: </label>
+    <span id="matchResult"></span>
+    <br>
+    <label id="humanScoreLabel">Your score:</label>
+    <div id="humanScore"></div>
+    <label id="computerScoreLabel">Computer score:</label>
+    <div id="computerScore"></div>
+    <div id="result"></div>
 </body>
 </html>
